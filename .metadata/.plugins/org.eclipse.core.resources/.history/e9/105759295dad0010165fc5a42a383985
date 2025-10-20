@@ -1,0 +1,54 @@
+/*
+ * seven_segment.c
+ *
+ *  Created on: Oct 13, 2025
+ *      Author: vermi
+ */
+
+
+#include <seven_segment.h>
+
+static void stopwatch_operation(SevenSegmentPrivate* this)
+{
+
+}
+
+static void operate(SevenSegment* public)
+{
+	SevenSegmentPrivate* this = (SevenSegmentPrivate*) public;
+	Timer*   timer = this->timer;
+	uint16_t count = timer->get_count(timer);
+	ModeMediator* mediator = this->mediator;
+
+	switch (mediator->get_mode(mediator))
+	{
+	case MODE_CLOCK:
+		return;
+	case MODE_TIMER:
+		return;
+	case MODE_STOPWATCH:
+		stopwatch_operation(this);
+		return;
+	case MODE_ALARM:
+		return;
+	default:
+		return;
+	}
+
+	uint8_t ones_digit   = (count / 1000) % 10;
+	uint8_t tenths_digit = (count /  100) % 10;
+
+	_7SEG_SetNumber(DGT1, ones_digit, (tenths_digit < 5) ? ON : OFF);
+	_7SEG_SetNumber(DGT2, tenths_digit, OFF);
+
+}
+
+SevenSegment* new_SevenSegment(ModeMediator* mediator, Timer* timer)
+{
+	SevenSegmentPrivate* this = malloc(sizeof(SevenSegmentPrivate));
+
+	this->public.operate  = operate;
+	this->timer = timer;
+
+	return (SevenSegment*) this;
+}

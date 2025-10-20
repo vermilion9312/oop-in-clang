@@ -1,0 +1,59 @@
+/*
+ * lcd.c
+ *
+ *  Created on: Oct 18, 2025
+ *      Author: vermi
+ */
+
+
+#include <lcd.h>
+
+static void operate(LCD* public)
+{
+	LCDPrivate* this = (LCDPrivate*) public;
+	Timer* timer = this->timer;
+
+	uint16_t count      = timer->get_count(timer);
+	uint16_t milisecond = count % 1000;
+	uint8_t  second     = (count / 1000) % 60;
+	uint8_t  minute     = (count / (1000 * 60)) % 60;
+	uint8_t  hour       = (count / (1000 * 60 * 60)) % 100;
+
+
+	uint8_t buffer[16];
+	sprintf(buffer, "STW %02d:%02d:%02d.%03d", hour, minute, second, milisecond);
+	CLCD_Puts(0, 0, buffer);
+
+	if (timer->get_count_total(timer) == 0) return;
+	if (timer->get_count_total(timer) > RECORDED_MAX_COUNT)
+	{
+		static bool once;
+		if (once) return;
+		once = true;
+		CLCD_Puts(0, 1, "                ");
+		CLCD_Puts(0, 1, "LAP FULL(9/9)");
+		return;
+	}
+
+	uint8_t index = timer->get_count_total(timer) - 1;
+	count      = timer->get_recorded_count(timer, index);
+	milisecond = count % 1000;
+	second     = (count / 1000) % 60;
+	minute     = (count / 1000 / 60) % 60;
+	hour       = (count / 1000 / 60 / 60) % 100;
+
+	sprintf(buffer, "LT%d %02d:%02d:%02d.%03d", timer->get_count_total(timer), hour, minute, second, milisecond);
+	CLCD_Puts(0, 1, buffer);
+}
+
+LCD* new_LCD(ModeMediator* mediator)
+{
+	LCDPrivate* this = malloc(sizeof(LCDPrivate));
+
+	this->public.operate = operate;
+
+	this->mediator = mediator
+	this->timer = new_Timer();
+
+	return (LCD*) &this;
+}

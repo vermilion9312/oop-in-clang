@@ -1,0 +1,17 @@
+15:05:33 **** Incremental Build of configuration Debug for project oop_3 ****
+make -j16 all 
+arm-none-eabi-gcc "../User/Src/lcd.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../User/State -I../User/Mode -I../User/Inc -I../Lib/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"User/Src/lcd.d" -MT"User/Src/lcd.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "User/Src/lcd.o"
+arm-none-eabi-gcc -o "oop_3.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Github\oop-in-clang\oop_3\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="oop_3.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: oop_3.elf
+ 
+arm-none-eabi-size  oop_3.elf 
+arm-none-eabi-objdump -h -S oop_3.elf  > "oop_3.list"
+   text	   data	    bss	    dec	    hex	filename
+  17648	     92	   2076	  19816	   4d68	oop_3.elf
+Finished building: default.size.stdout
+ 
+Finished building: oop_3.list
+ 
+
+15:05:34 Build Finished. 0 errors, 0 warnings. (took 804ms)
+

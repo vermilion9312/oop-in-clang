@@ -1,0 +1,77 @@
+/*
+ * app_main.c
+ *
+ *  Created on: Sep 23, 2025
+ *      Author: vermi
+ */
+
+
+#include <app_main.h>
+#include <main.h>
+#include <input.h>
+#include <output.h>
+#include <seven_segment.h>
+
+static Input* button_1;
+static Input* button_2;
+static Input* button_3;
+static Input* button_4;
+
+static Output* left_red;
+static Output* left_green;
+static Output* left_blue;
+static Output* right_red;
+
+static ModeMediator* mediator;
+static Timer*        timer;
+static SevenSegment* segment;
+
+void app_init(void)
+{
+	_7SEG_GPIO_Init();
+
+	button_1 = new_Input(BUTTON_1_GPIO_Port, BUTTON_1_Pin);
+	button_2 = new_Input(BUTTON_2_GPIO_Port, BUTTON_2_Pin);
+	button_3 = new_Input(BUTTON_3_GPIO_Port, BUTTON_3_Pin);
+	button_4 = new_Input(BUTTON_4_GPIO_Port, BUTTON_4_Pin);
+
+	left_red   = new_Output(LEFT_RED_GPIO_Port,   LEFT_RED_Pin  );
+	left_green = new_Output(LEFT_GREEN_GPIO_Port, LEFT_GREEN_Pin);
+	left_blue  = new_Output(LEFT_BLUE_GPIO_Port,  LEFT_BLUE_Pin );
+	right_red  = new_Output(RIGHT_RED_GPIO_Port,  RIGHT_RED_Pin );
+
+	mediator = new_ModeMediator(button_2, button_3);
+	timer    = new_Timer(mediator);
+	segment  = new_SevenSegment(timer);
+
+}
+
+void app_loop(void)
+{
+	button_1->update(button_1);
+	button_2->update(button_2);
+	button_3->update(button_3);
+	button_4->update(button_4);
+
+	if (button_1->is_released(button_1)) left_red  ->toggle(left_red  );
+	if (button_2->is_released(button_2)) left_green->toggle(left_green);
+	if (button_3->is_released(button_3)) left_blue ->toggle(left_blue );
+	if (button_4->is_released(button_4)) right_red ->toggle(right_red );
+
+	mediator->update(mediator);
+	segment->operate(segment);
+}
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+	if (htim->Instance == TIM6)
+	{
+		timer->operate(timer);
+	}
+}
+
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+
+}

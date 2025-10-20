@@ -1,0 +1,70 @@
+/*
+ * timer.c
+ *
+ *  Created on: Oct 18, 2025
+ *      Author: vermi
+ */
+
+
+#include <timer.h>
+
+static void operate(Timer* public)
+{
+	TimerPrivate* this = (TimerPrivate*) public;
+	ModeMediator* mediator = this->mediator;
+
+	switch (mediator->get_state(mediator))
+	{
+	case STATE_STOPPED:
+		this->count = 0;
+		return;
+	case STATE_RUNNING:
+		this->count++;
+		return;
+	case STATE_PAUSED:
+
+		return;
+	default:
+		return;
+	}
+}
+
+static uint16_t get_count(Timer* public)
+{
+	TimerPrivate* this = (TimerPrivate*) public;
+	return this->count;
+}
+
+static void log_count(Timer* public)
+{
+	TimerPrivate* this = (TimerPrivate*) public;
+	if (this->log_index >= LOG_MAX_COUNT) this->count++;
+	this->log[this->log_index++] = this->count;
+}
+
+static uint8_t get_log_index(Timer* public)
+{
+	TimerPrivate* this = (TimerPrivate*) public;
+	return this->log_index;
+}
+
+static uint16_t get_logged_count(Timer* public, uint8_t index)
+{
+	TimerPrivate* this = (TimerPrivate*) public;
+	return this->log[index];
+}
+
+Timer* new_Timer(ModeMediator* mediator)
+{
+	static TimerPrivate this;
+
+	this.public.operate       = operate;
+	this.public.get_count     = get_count;
+	this.public.log_count     = log_count;
+	this.public.get_log_index = get_log_index;
+
+	this.mediator = mediator;
+	this.count    = 0;
+
+	return (Timer*) &this;
+}

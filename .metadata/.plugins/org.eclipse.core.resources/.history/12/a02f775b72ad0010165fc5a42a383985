@@ -1,0 +1,30 @@
+/*
+ * timer.h
+ *
+ *  Created on: Oct 18, 2025
+ *      Author: vermi
+ */
+
+#ifndef INC_TIMER_H_
+#define INC_TIMER_H_
+
+#include <common_include.h>
+#include <mode_mediator.h>
+
+typedef struct _Timer Timer;
+struct _Timer {
+	void (* operate)(Timer*);
+	uint16_t (* get_count)(Timer*);
+};
+
+typedef struct _TimerPrivate TimerPrivate;
+struct _TimerPrivate {
+	Timer public;
+
+	ModeMediator* mediator;
+	uint16_t count;
+};
+
+Timer* new_Timer(ModeMediator*);
+
+#endif /* INC_TIMER_H_ */

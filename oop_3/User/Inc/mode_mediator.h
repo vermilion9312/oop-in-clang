@@ -1,0 +1,52 @@
+/*
+ * mode_mediator.h
+ *
+ *  Created on: Oct 20, 2025
+ *      Author: LeeJooHo
+ */
+
+#ifndef INC_MODE_MEDIATOR_H_
+#define INC_MODE_MEDIATOR_H_
+
+#include <common_include.h>
+#include <input.h>
+#include <timer.h>
+
+typedef enum {
+	MODE_CLOCK,
+	MODE_TIMER,
+	MODE_STOPWATCH,
+	MODE_ALARM,
+	MODE_MUSIC_PLAYER
+} ClockMode;
+
+typedef enum {
+	STATE_STOPPED,
+	STATE_RUNNING,
+	STATE_PAUSED
+} StopwatchState;
+
+typedef struct _Timer Timer;
+
+typedef struct _ModeMediator ModeMediator;
+struct _ModeMediator {
+	void (* update)(ModeMediator*);
+	ClockMode (* get_mode)(ModeMediator*);
+	StopwatchState (* get_state)(ModeMediator*);
+};
+
+typedef struct _ModeMediatorPrivate ModeMediatorPrivate;
+struct _ModeMediatorPrivate {
+	ModeMediator public;
+
+	Input* button_2;
+	Input* button_3;
+	Timer* timer;
+
+	ClockMode      mode;
+	StopwatchState state;
+};
+
+ModeMediator* new_ModeMediator(Input*, Input*);
+
+#endif /* INC_MODE_MEDIATOR_H_ */

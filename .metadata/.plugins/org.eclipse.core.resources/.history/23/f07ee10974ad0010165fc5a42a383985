@@ -1,0 +1,36 @@
+/*
+ * timer.h
+ *
+ *  Created on: Oct 18, 2025
+ *      Author: vermi
+ */
+
+#ifndef INC_TIMER_H_
+#define INC_TIMER_H_
+
+#include <common_include.h>
+#include <mode_mediator.h>
+
+#define LOG_MAX_COUNT 9
+
+typedef struct _Timer Timer;
+struct _Timer {
+	void (* operate)(Timer*);
+	uint16_t (* get_count)(Timer*);
+	void (* log_count)(Timer*);
+	uint8_t (* get_log_index)(Timer*);
+};
+
+typedef struct _TimerPrivate TimerPrivate;
+struct _TimerPrivate {
+	Timer public;
+
+	ModeMediator* mediator;
+	uint16_t count;
+	uint16_t log[LOG_MAX_COUNT];
+	uint8_t log_index;
+};
+
+Timer* new_Timer(ModeMediator*);
+
+#endif /* INC_TIMER_H_ */

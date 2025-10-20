@@ -1,0 +1,3 @@
+../User/Src/seven_segment.c:11:13:operate	32	static
+../User/Src/seven_segment.c:26:13:count_up	24	static
+../User/Src/seven_segment.c:33:15:new_SevenSegment	16	static

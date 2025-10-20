@@ -1,0 +1,4 @@
+../User/Src/uart.c:11:13:receive	24	static
+../User/Src/uart.c:18:16:get_rx_data	24	static
+../User/Src/uart.c:25:13:reset_data	24	static
+../User/Src/uart.c:32:7:new_Uart	24	static
