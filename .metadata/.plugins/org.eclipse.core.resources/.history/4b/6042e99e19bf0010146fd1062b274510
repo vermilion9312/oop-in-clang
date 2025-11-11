@@ -1,0 +1,32 @@
+/*
+ * input.h
+ *
+ *  Created on: Sep 23, 2025
+ *      Author: vermi
+ */
+
+#ifndef INC_INPUT_H_
+#define INC_INPUT_H_
+
+#include <common_include.h>
+
+
+CLASS (Input) {
+	void (* update)(Input*);
+	bool (* is_held)(Input*);
+	bool (* is_pressed)(Input*);
+	bool (* is_released)(Input*);
+};
+
+PRIVATE (Input) {
+	Input public;
+
+	GPIO_TypeDef* port;
+	uint16_t      pin;
+	bool          last_state;
+	bool          state;
+};
+
+Input* new_Input(GPIO_TypeDef*, uint16_t);
+
+#endif /* INC_INPUT_H_ */

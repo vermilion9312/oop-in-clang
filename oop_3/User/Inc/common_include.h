@@ -14,4 +14,15 @@
 #include <stm32f4xx.h>
 #include <stdio.h>
 
+#define CLASS(name) \
+    typedef struct _##name name; \
+    struct _##name
+
+#define PRIVATE(name) \
+    typedef struct _##name##Private name##Private; \
+    struct _##name##Private
+
+#define THIS(Type, obj) \
+    Type##Private* this = (Type##Private*)(obj)
+
 #endif /* INC_COMMON_INCLUDE_H_ */

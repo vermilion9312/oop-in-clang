@@ -10,7 +10,7 @@
 
 static void update(Input* public)
 {
-	InputPrivate* this = (InputPrivate*) public;
+	THIS(Input, public);
 
 	this->last_state = this->state;
 	this->state = HAL_GPIO_ReadPin(this->port, this->pin);
@@ -18,21 +18,21 @@ static void update(Input* public)
 
 static bool is_held(Input* public)
 {
-	InputPrivate* this = (InputPrivate*) public;
+	THIS(Input, public);
 
 	return this->state;
 }
 
 static bool is_pressed(Input* public)
 {
-	InputPrivate* this = (InputPrivate*) public;
+	THIS(Input, public);
 
 	return !this->last_state && this->state;
 }
 
 static bool is_released(Input* public)
 {
-	InputPrivate* this = (InputPrivate*) public;
+	THIS(Input, public);
 
 	return this->last_state && !this->state;
 }
@@ -53,4 +53,3 @@ Input* new_Input(GPIO_TypeDef* port, uint16_t pin)
 
 	return (Input*) this;
 }
-

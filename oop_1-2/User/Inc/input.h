@@ -10,16 +10,14 @@
 
 #include <common_include.h>
 
-typedef struct _Input Input;
-struct _Input {
+CLASS (Input) {
 	void (* update)(Input*);
 	bool (* is_held)(Input*);
 	bool (* is_pressed)(Input*);
 	bool (* is_released)(Input*);
 };
 
-typedef struct _InputPrivate InputPrivate;
-struct _InputPrivate {
+PRIVATE (Input) {
 	Input public;
 
 	GPIO_TypeDef* port;

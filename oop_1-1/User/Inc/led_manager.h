@@ -11,13 +11,11 @@
 #include <input.h>
 #include <output.h>
 
-typedef struct _LEDManager LEDManager;
-struct _LEDManager {
+CLASS (LEDManager) {
 	void (* operate)(LEDManager*);
 };
 
-typedef struct _LEDManagerPrivate LEDManagerPrivate;
-struct _LEDManagerPrivate {
+PRIVATE (LEDManager) {
 	LEDManager public;
 
 	Input*  button;

@@ -1,3 +1,0 @@
-../User/Src/lcd.c:11:13:stopwatch_opertion	64	static
-../User/Src/lcd.c:61:13:operate	24	static
-../User/Src/lcd.c:82:6:new_LCD	24	static

@@ -1,16 +1,10 @@
-08:45:09 **** Build of configuration Debug for project oop_1-2 ****
-make -j16 all 
-arm-none-eabi-gcc -o "oop_1-2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Github\oop-in-clang\oop_1-2\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="oop_1-2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: oop_1-2.elf
- 
+01:25:54 **** Incremental Build of configuration Debug for project oop_1-2 ****
+make -j4 all 
 arm-none-eabi-size  oop_1-2.elf 
-arm-none-eabi-objdump -h -S oop_1-2.elf  > "oop_1-2.list"
    text	   data	    bss	    dec	    hex	filename
   12792	     92	   2028	  14912	   3a40	oop_1-2.elf
 Finished building: default.size.stdout
  
-Finished building: oop_1-2.list
- 
 
-08:45:10 Build Finished. 0 errors, 0 warnings. (took 704ms)
+01:25:55 Build Finished. 0 errors, 0 warnings. (took 412ms)
 

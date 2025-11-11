@@ -1,5 +1,0 @@
-../User/Src/mode_mediator.c:11:13:stopwatch_operation	9
-../User/Src/mode_mediator.c:33:13:update	2
-../User/Src/mode_mediator.c:53:18:get_mode	1
-../User/Src/mode_mediator.c:59:23:get_state	1
-../User/Src/mode_mediator.c:66:15:new_ModeMediator	1

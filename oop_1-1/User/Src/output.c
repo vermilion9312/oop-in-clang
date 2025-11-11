@@ -10,7 +10,7 @@
 
 static void turn_on(Output* public)
 {
-	OutputPrivate* this = (OutputPrivate*) public;
+	THIS(Output, public);
 
 	HAL_GPIO_WritePin(this->port, this->pin, GPIO_PIN_RESET);
 	this->state = true;
@@ -18,7 +18,7 @@ static void turn_on(Output* public)
 
 static void turn_off(Output* public)
 {
-	OutputPrivate* this = (OutputPrivate*) public;
+	THIS(Output, public);
 
 	HAL_GPIO_WritePin(this->port, this->pin, GPIO_PIN_SET);
 	this->state = false;
@@ -26,7 +26,7 @@ static void turn_off(Output* public)
 
 static void toggle(Output* public)
 {
-	OutputPrivate* this = (OutputPrivate*) public;
+	THIS(Output, public);
 
 	this->state ? turn_off(public) : turn_on(public);
 }

@@ -10,7 +10,7 @@
 
 static void operate(LEDManager* public)
 {
-	LEDManagerPrivate* this = (LEDManagerPrivate*) public;
+	THIS(LEDManager, public);
 	Input*  button    = this->button;
 	Output* left_led  = this->left_led;
 	Output* right_led = this->right_led;

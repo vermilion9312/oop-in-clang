@@ -1,10 +1,20 @@
-08:44:13 **** Incremental Build of configuration Debug for project oop_1-1 ****
-make -j16 all 
+01:14:42 **** Incremental Build of configuration Debug for project oop_1-1 ****
+make -j4 all 
+arm-none-eabi-gcc "../User/Src/app_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../User/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"User/Src/app_main.d" -MT"User/Src/app_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "User/Src/app_main.o"
+arm-none-eabi-gcc "../User/Src/input.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../User/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"User/Src/input.d" -MT"User/Src/input.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "User/Src/input.o"
+arm-none-eabi-gcc "../User/Src/led_manager.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../User/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"User/Src/led_manager.d" -MT"User/Src/led_manager.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "User/Src/led_manager.o"
+arm-none-eabi-gcc "../User/Src/output.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../User/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"User/Src/output.d" -MT"User/Src/output.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "User/Src/output.o"
+arm-none-eabi-gcc -o "oop_1-1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Github\oop-in-clang\oop_1-1\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="oop_1-1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: oop_1-1.elf
+ 
 arm-none-eabi-size  oop_1-1.elf 
+arm-none-eabi-objdump -h -S oop_1-1.elf  > "oop_1-1.list"
    text	   data	    bss	    dec	    hex	filename
    7548	     92	   1948	   9588	   2574	oop_1-1.elf
 Finished building: default.size.stdout
  
+Finished building: oop_1-1.list
+ 
 
-08:44:13 Build Finished. 0 errors, 0 warnings. (took 258ms)
+01:14:43 Build Finished. 0 errors, 0 warnings. (took 1s.403ms)
 
