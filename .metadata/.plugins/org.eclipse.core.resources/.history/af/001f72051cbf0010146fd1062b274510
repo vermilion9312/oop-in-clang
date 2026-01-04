@@ -1,6 +1,0 @@
-../User/Src/timer.c:11:13:operate	5
-../User/Src/timer.c:33:17:get_count	1
-../User/Src/timer.c:39:13:log_count	2
-../User/Src/timer.c:46:16:get_log_index	1
-../User/Src/timer.c:52:17:get_logged_count	1
-../User/Src/timer.c:58:8:new_Timer	1

@@ -1,0 +1,6 @@
+../User/Src/input.c:12:13:is_held	1
+../User/Src/input.c:18:13:is_pressed	3
+../User/Src/input.c:24:13:is_released	3
+../User/Src/input.c:30:13:tick	3
+../User/Src/input.c:45:6:set_callback	5
+../User/Src/input.c:68:8:new_Input	1

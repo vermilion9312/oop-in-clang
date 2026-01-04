@@ -1,0 +1,69 @@
+/*
+ * input.c
+ *
+ *  Created on: Sep 23, 2025
+ *      Author: vermi
+ */
+
+
+#include <input.h>
+
+
+static bool is_held(Input* public)
+{
+	THIS(Input, public);
+	return this->state;
+}
+
+static bool is_pressed(Input* public)
+{
+	THIS(Input, public);
+	return !this->last_state && this->state;
+}
+
+static bool is_released(Input* public)
+{
+	THIS(Input, public);
+	return this->last_state && !this->state;
+}
+
+static void add_device(Input* public, IDevice* device)
+{
+	THIS(Input, public);
+	if (this->device_total >= MAX_DEVICE) return;
+	this->device[this->device_total++] = device;
+}
+
+static void update(Input* public)
+{
+	THIS(Input, public);
+	IDevice** device = this->device;
+
+	this->last_state = this->state;
+	this->state = HAL_GPIO_ReadPin(this->port, this->pin);
+
+	for (uint8_t i = 0; i < MAX_DEVICE; i++)
+	{
+		if (this->state                     ) device[i]->operate(device[i], ON_HELD    );
+		if (!this->last_state && this->state) device[i]->operate(device[i], ON_PRESSED );
+		if (this->last_state && !this->state) device[i]->operate(device[i], ON_RELEASED);
+	}
+}
+
+void set_action(Input* public, void* context, CallbackFunction func)
+{
+	THIS(Input, public);
+
+}
+
+Input* new_Input(GPIO_TypeDef* port, uint16_t pin)
+{
+	InputPrivate* this = calloc(sizeof(InputPrivate), 1);
+
+	this->public.update = update;
+
+	this->port = port;
+	this->pin  = pin;
+
+	return (Input*) this;
+}

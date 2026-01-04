@@ -1,5 +1,0 @@
-../User/Src/input.c:11:13:update	24	static
-../User/Src/input.c:19:13:is_held	24	static
-../User/Src/input.c:26:13:is_pressed	24	static
-../User/Src/input.c:33:13:is_released	24	static
-../User/Src/input.c:40:8:new_Input	24	static

@@ -31,7 +31,7 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
  13 .debug_info   0000443a  00000000  00000000  0000308c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_abbrev 0000149e  00000000  00000000  000074c6  2**0
+ 14 .debug_abbrev 0000149f  00000000  00000000  000074c6  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  15 .debug_aranges 000004f0  00000000  00000000  00008968  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -39,15 +39,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  17 .debug_macro  0001ff43  00000000  00000000  000091d2  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   00007868  00000000  00000000  00029115  2**0
+ 18 .debug_line   00007864  00000000  00000000  00029115  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000c00c6  00000000  00000000  0003097d  2**0
+ 19 .debug_str    000c00c6  00000000  00000000  00030979  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .comment      00000043  00000000  00000000  000f0a43  2**0
+ 20 .comment      00000043  00000000  00000000  000f0a3f  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  000013f4  00000000  00000000  000f0a88  2**2
+ 21 .debug_frame  000013f4  00000000  00000000  000f0a84  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 22 .debug_line_str 0000004d  00000000  00000000  000f1e7c  2**0
+ 22 .debug_line_str 0000004d  00000000  00000000  000f1e78  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -3923,7 +3923,7 @@ static void update(Input* public)
  80018be:	b084      	sub	sp, #16
  80018c0:	af00      	add	r7, sp, #0
  80018c2:	6078      	str	r0, [r7, #4]
-	InputPrivate* this = (InputPrivate*) public;
+	THIS(Input, public);
  80018c4:	687b      	ldr	r3, [r7, #4]
  80018c6:	60fb      	str	r3, [r7, #12]
 
@@ -3962,7 +3962,7 @@ static bool is_held(Input* public)
  80018fa:	b085      	sub	sp, #20
  80018fc:	af00      	add	r7, sp, #0
  80018fe:	6078      	str	r0, [r7, #4]
-	InputPrivate* this = (InputPrivate*) public;
+	THIS(Input, public);
  8001900:	687b      	ldr	r3, [r7, #4]
  8001902:	60fb      	str	r3, [r7, #12]
 
@@ -3984,7 +3984,7 @@ static bool is_pressed(Input* public)
  8001916:	b085      	sub	sp, #20
  8001918:	af00      	add	r7, sp, #0
  800191a:	6078      	str	r0, [r7, #4]
-	InputPrivate* this = (InputPrivate*) public;
+	THIS(Input, public);
  800191c:	687b      	ldr	r3, [r7, #4]
  800191e:	60fb      	str	r3, [r7, #12]
 
@@ -4019,7 +4019,7 @@ static bool is_released(Input* public)
  8001950:	b085      	sub	sp, #20
  8001952:	af00      	add	r7, sp, #0
  8001954:	6078      	str	r0, [r7, #4]
-	InputPrivate* this = (InputPrivate*) public;
+	THIS(Input, public);
  8001956:	687b      	ldr	r3, [r7, #4]
  8001958:	60fb      	str	r3, [r7, #12]
 
@@ -4119,7 +4119,7 @@ static void operate(LEDManager* public)
  80019ea:	b086      	sub	sp, #24
  80019ec:	af00      	add	r7, sp, #0
  80019ee:	6078      	str	r0, [r7, #4]
-	LEDManagerPrivate* this = (LEDManagerPrivate*) public;
+	THIS(LEDManager, public);
  80019f0:	687b      	ldr	r3, [r7, #4]
  80019f2:	617b      	str	r3, [r7, #20]
 	Input*  button    = this->button;
@@ -4225,7 +4225,7 @@ static void turn_on(Output* public)
  8001a82:	b084      	sub	sp, #16
  8001a84:	af00      	add	r7, sp, #0
  8001a86:	6078      	str	r0, [r7, #4]
-	OutputPrivate* this = (OutputPrivate*) public;
+	THIS(Output, public);
  8001a88:	687b      	ldr	r3, [r7, #4]
  8001a8a:	60fb      	str	r3, [r7, #12]
 
@@ -4255,7 +4255,7 @@ static void turn_off(Output* public)
  8001aac:	b084      	sub	sp, #16
  8001aae:	af00      	add	r7, sp, #0
  8001ab0:	6078      	str	r0, [r7, #4]
-	OutputPrivate* this = (OutputPrivate*) public;
+	THIS(Output, public);
  8001ab2:	687b      	ldr	r3, [r7, #4]
  8001ab4:	60fb      	str	r3, [r7, #12]
 
@@ -4285,7 +4285,7 @@ static void toggle(Output* public)
  8001ad6:	b084      	sub	sp, #16
  8001ad8:	af00      	add	r7, sp, #0
  8001ada:	6078      	str	r0, [r7, #4]
-	OutputPrivate* this = (OutputPrivate*) public;
+	THIS(Output, public);
  8001adc:	687b      	ldr	r3, [r7, #4]
  8001ade:	60fb      	str	r3, [r7, #12]
 

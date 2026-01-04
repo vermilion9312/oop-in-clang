@@ -1,0 +1,54 @@
+/*
+ * app_main.c
+ *
+ *  Created on: Sep 23, 2025
+ *      Author: vermi
+ */
+
+
+#include <app_main.h>
+#include <main.h>
+#include <input.h>
+#include <output.h>
+
+static Input* button_1;
+static Input* button_2;
+static Input* button_3;
+
+static Output* left_red;
+static Output* left_green;
+static Output* left_blue;
+
+static Output* right_red;
+static Output* right_green;
+static Output* right_blue;
+
+void app_init(void)
+{
+	button_1 = new_Input(BUTTON_1_GPIO_Port, BUTTON_1_Pin);
+	button_2 = new_Input(BUTTON_2_GPIO_Port, BUTTON_2_Pin);
+	button_3 = new_Input(BUTTON_3_GPIO_Port, BUTTON_3_Pin);
+
+	left_red   = new_Output(LEFT_RED_GPIO_Port,   LEFT_RED_Pin  );
+	left_green = new_Output(LEFT_GREEN_GPIO_Port, LEFT_GREEN_Pin);
+	left_blue  = new_Output(LEFT_BLUE_GPIO_Port,  LEFT_BLUE_Pin );
+
+	right_red   = new_Output(RIGHT_RED_GPIO_Port,   RIGHT_RED_Pin  );
+	right_green = new_Output(RIGHT_GREEN_GPIO_Port, RIGHT_GREEN_Pin);
+	right_blue  = new_Output(RIGHT_BLUE_GPIO_Port,  RIGHT_BLUE_Pin );
+
+	button_1->set_callback(button_1, left_red,   (void (*)(void *)) left_red->toggle,   PRESSED);
+	button_2->set_callback(button_2, left_green, (void (*)(void *)) left_green->toggle, PRESSED);
+	button_3->set_callback(button_3, left_blue,  (void (*)(void *)) left_blue->toggle,  PRESSED);
+
+	button_1->set_callback(button_1, right_red,   (void (*)(void *)) right_red->toggle,   RELEASED);
+	button_2->set_callback(button_2, right_green, (void (*)(void *)) right_green->toggle, RELEASED);
+	button_3->set_callback(button_3, right_blue,  (void (*)(void *)) right_blue->toggle,  RELEASED);
+}
+
+void app_loop(void)
+{
+	button_1->tick(button_1);
+	button_2->tick(button_2);
+	button_3->tick(button_3);
+}
