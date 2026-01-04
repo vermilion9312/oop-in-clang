@@ -1,0 +1,26 @@
+/*
+ * app_main.c
+ *
+ *  Created on: Sep 23, 2025
+ *      Author: vermi
+ */
+
+
+#include <app_main.h>
+#include <main.h>
+#include <input.h>
+#include <output.h>
+
+void app_init(void)
+{
+
+}
+
+void app_loop(void)
+{
+	update_input(BUTTON_1);
+	update_input(BUTTON_2);
+	update_input(BUTTON_3);
+
+	is_pressed(BUTTON_1)
+}

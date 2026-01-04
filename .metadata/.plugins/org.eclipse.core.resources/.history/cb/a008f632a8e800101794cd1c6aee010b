@@ -1,0 +1,15 @@
+/*
+ * segment.c
+ *
+ *  Created on: Jan 3, 2026
+ *      Author: LeeJooHo
+ */
+
+
+#include <segment.h>
+
+void operate_segment(void)
+{
+	_7SEG_SetNumber(DGT1, get_time(), OFF);
+}
+

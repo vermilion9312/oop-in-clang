@@ -1,0 +1,45 @@
+/*
+ * output.c
+ *
+ *  Created on: Sep 22, 2025
+ *      Author: vermi
+ */
+
+
+#include <output.h>
+
+static OutputConfig left_config[MAX_OUTPUT] = {
+		{ LEFT_RED_GPIO_Port,   LEFT_RED_Pin   },
+		{ LEFT_GREEN_GPIO_Port, LEFT_GREEN_Pin },
+		{ LEFT_BLUE_GPIO_Port,  LEFT_BLUE_Pin  }
+};
+
+static OutputConfig right_config[MAX_OUTPUT] = {
+		{ RIGHT_RED_GPIO_Port,   RIGHT_RED_Pin   },
+		{ RIGHT_GREEN_GPIO_Port, RIGHT_GREEN_Pin },
+		{ RIGHT_BLUE_GPIO_Port,  RIGHT_BLUE_Pin  }
+};
+
+static OutputConfig** config = left_config;
+
+void turn_on(OutputIndex index)
+{
+	HAL_GPIO_WritePin(config->port, config->pin, GPIO_PIN_RESET);
+	config->state = true;
+}
+
+void turn_off(OutputIndex index)
+{
+	HAL_GPIO_WritePin(config->port, config->pin, GPIO_PIN_SET);
+	config->state = false;
+}
+
+void toggle(OutputIndex index)
+{
+	config->state ? turn_off(index) : turn_on(index);
+}
+
+void change_config(void)
+{
+	config = (config == left_config) ? right_config : left_config;
+}

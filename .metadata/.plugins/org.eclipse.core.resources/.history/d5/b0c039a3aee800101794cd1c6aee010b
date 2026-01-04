@@ -1,0 +1,19 @@
+/*
+ * stopwatch.h
+ *
+ *  Created on: Jan 3, 2026
+ *      Author: LeeJooHo
+ */
+
+#ifndef INC_STOPWATCH_H_
+#define INC_STOPWATCH_H_
+
+#include <common_include.h>
+
+typedef enum {
+	STATE_STOPPED,
+	STATE_PAUSED,
+	STATE_RUNNING
+} StopwatchState;
+
+#endif /* INC_STOPWATCH_H_ */

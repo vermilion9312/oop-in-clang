@@ -1,0 +1,15 @@
+/*
+ * clock.c
+ *
+ *  Created on: Jan 3, 2026
+ *      Author: LeeJooHo
+ */
+
+
+#include <clock.h>
+
+
+void operation_clock(void)
+{
+
+}

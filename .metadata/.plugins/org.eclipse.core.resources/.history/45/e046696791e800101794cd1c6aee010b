@@ -1,0 +1,83 @@
+/*
+ * input.c
+ *
+ *  Created on: Sep 23, 2025
+ *      Author: vermi
+ */
+
+
+#include <input.h>
+
+
+static bool is_held(Input* public)
+{
+	THIS(Input, public);
+	return this->state;
+}
+
+static bool is_pressed(Input* public)
+{
+	THIS(Input, public);
+	return !this->last_state && this->state;
+}
+
+static bool is_released(Input* public)
+{
+	THIS(Input, public);
+	return this->last_state && !this->state;
+}
+
+static void tick(Input* public)
+{
+	THIS(Input, public);
+
+	this->last_state = this->state;
+	this->state = HAL_GPIO_ReadPin(this->port, this->pin);
+
+
+
+	for (uint8_t i = 0; i < this->total_callback; i++)
+	{
+		InputCondition* condition = this->condition;
+		Callback*       callback  = this->callback;
+
+		if (condition[i](public)) callback[i].function(callback[i].context);
+	}
+
+}
+
+void set_callback(Input* public, void* context, CallbackFunction function, InputEvent event)
+{
+	THIS(Input, public);
+
+	this->callback[this->total_callback].context = context;
+	this->callback[this->total_callback].function = function;
+
+	switch (event)
+	{
+	case HELD:
+		this->condition[this->total_callback++] = is_held;
+		return;
+	case PRESSED:
+		this->condition[this->total_callback++] = is_pressed;
+		return;
+	case RELEASED:
+		this->condition[this->total_callback++] = is_released;
+		return;
+	default:
+		return;
+	}
+}
+
+Input* new_Input(GPIO_TypeDef* port, uint16_t pin)
+{
+	InputPrivate* this = calloc(sizeof(InputPrivate), 1);
+
+	this->public.tick = tick;
+	this->public.set_callback = set_callback;
+
+	this->port = port;
+	this->pin  = pin;
+
+	return (Input*) this;
+}

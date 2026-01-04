@@ -1,0 +1,4 @@
+../User/Src/output.c:25:6:turn_on	1
+../User/Src/output.c:31:6:turn_off	1
+../User/Src/output.c:37:6:toggle	2
+../User/Src/output.c:42:6:change_config	2

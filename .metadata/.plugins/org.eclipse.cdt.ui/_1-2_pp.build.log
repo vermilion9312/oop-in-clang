@@ -1,0 +1,10 @@
+21:27:03 **** Incremental Build of configuration Debug for project _1-2_pp ****
+make -j4 all 
+arm-none-eabi-size  _1-2_pp.elf 
+   text	   data	    bss	    dec	    hex	filename
+   6524	     96	   1568	   8188	   1ffc	_1-2_pp.elf
+Finished building: default.size.stdout
+ 
+
+21:27:04 Build Finished. 0 errors, 0 warnings. (took 336ms)
+

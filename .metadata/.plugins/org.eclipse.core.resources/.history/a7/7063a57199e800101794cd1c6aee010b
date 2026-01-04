@@ -1,0 +1,61 @@
+/*
+ * input.c
+ *
+ *  Created on: Sep 23, 2025
+ *      Author: vermi
+ */
+
+
+#include <input.h>
+
+static InputConfig input_config[MAX_BUTTON] = {
+		{ .port = BUTTON_1_GPIO_Port, .pin = BUTTON_1_Pin, .last_state = false, .state = false },
+		{ .port = BUTTON_2_GPIO_Port, .pin = BUTTON_2_Pin, .last_state = false, .state = false },
+		{ .port = BUTTON_3_GPIO_Port, .pin = BUTTON_3_Pin, .last_state = false, .state = false },
+		{ .port = BUTTON_4_GPIO_Port, .pin = BUTTON_4_Pin, .last_state = false, .state = false }
+};
+
+static void update_input(InputIndex index)
+{
+	InputConfig* config = &input_config[index];
+	config->last_state = config->state;
+	config->state = HAL_GPIO_ReadPin(config->port, config->pin);
+}
+
+static bool is_held(Input* public)
+{
+
+
+	return this->state;
+}
+
+static bool is_pressed(Input* public)
+{
+
+
+	return !this->last_state && this->state;
+}
+
+static bool is_released(Input* public)
+{
+	THIS(Input, public);
+
+	return this->last_state && !this->state;
+}
+
+Input* new_Input(GPIO_TypeDef* port, uint16_t pin)
+{
+	InputPrivate* this = malloc(sizeof(InputPrivate));
+
+	this->public.update      = update;
+	this->public.is_held     = is_held;
+	this->public.is_pressed  = is_pressed;
+	this->public.is_released = is_released;
+
+	this->port       = port;
+	this->pin        = pin;
+	this->last_state = false;
+	this->state      = false;
+
+	return (Input*) this;
+}

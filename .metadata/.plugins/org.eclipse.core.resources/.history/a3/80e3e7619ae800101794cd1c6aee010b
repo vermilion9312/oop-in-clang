@@ -1,0 +1,42 @@
+/*
+ * output.c
+ *
+ *  Created on: Sep 22, 2025
+ *      Author: vermi
+ */
+
+
+#include <output.h>
+
+static OutputConfig output_config[MAX_OUTPUT] = {
+		{ .port = LEFT_RED_GPIO_Port,   .pin = LEFT_RED_Pin,   .state = false },
+		{ .port = LEFT_GREEN_GPIO_Port, .pin = LEFT_GREEN_Pin, .state = false },
+		{ .port = LEFT_BLUE_GPIO_Port,  .pin = LEFT_BLUE_Pin,  .state = false },
+
+		{ .port = RIGHT_RED_GPIO_Port,   .pin = RIGHT_RED_Pin,   .state = false },
+		{ .port = RIGHT_GREEN_GPIO_Port, .pin = RIGHT_GREEN_Pin, .state = false },
+		{ .port = RIGHT_BLUE_GPIO_Port,  .pin = RIGHT_BLUE_Pin,  .state = false }
+};
+
+static void turn_on(OutputIndex index)
+{
+	OutputConfig* config = &output_config[index];
+
+	HAL_GPIO_WritePin(config->port, config->pin, GPIO_PIN_RESET);
+	config->state = true;
+}
+
+static void turn_off(OutputIndex index)
+{
+	OutputConfig* config = &output_config[index];
+
+	HAL_GPIO_WritePin(config->port, config->pin, GPIO_PIN_SET);
+	config->state = false;
+}
+
+static void toggle(OutputIndex index)
+{
+	OutputConfig* config = &output_config[index];
+
+	config->state ? turn_off(index) : turn_on(index);
+}
