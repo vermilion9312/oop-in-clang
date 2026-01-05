@@ -1,0 +1,37 @@
+/*
+ * clock.c
+ *
+ *  Created on: Jan 3, 2026
+ *      Author: LeeJooHo
+ */
+
+
+#include <clock.h>
+
+static Mode mode = MODE_STOPWATCH;
+
+void operation_clock(void)
+{
+	switch (mode)
+	{
+	case CLOCK:
+		return;
+	case TIMER:
+		return;
+	case STOPWATCH:
+		operate_stopwatch();
+		return;
+	case ALARM:
+		return;
+	case MUSIC_PLAYER:
+		return;
+	default:
+		return;
+	}
+}
+
+
+void operate_stopwatch(void)
+{
+
+}

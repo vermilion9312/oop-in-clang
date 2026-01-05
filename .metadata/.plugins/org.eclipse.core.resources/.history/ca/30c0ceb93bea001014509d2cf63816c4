@@ -1,0 +1,28 @@
+/*
+ * clock.h
+ *
+ *  Created on: Jan 3, 2026
+ *      Author: LeeJooHo
+ */
+
+#ifndef INC_CLOCK_H_
+#define INC_CLOCK_H_
+
+#include <common_include.h>
+#include <input.h>
+
+typedef enum {
+	CLOCK,
+	TIMER,
+	STOPWATCH,
+	ALARM,
+	MUSIC_PLAYER
+} Mode;
+
+typedef enum {
+	STOPPED,
+	PAUSED,
+	RUNNING
+} State;
+
+#endif /* INC_CLOCK_H_ */

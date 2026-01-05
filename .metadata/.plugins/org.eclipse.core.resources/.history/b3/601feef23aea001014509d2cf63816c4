@@ -1,0 +1,55 @@
+/*
+ * clock.c
+ *
+ *  Created on: Jan 3, 2026
+ *      Author: LeeJooHo
+ */
+
+
+#include <clock.h>
+
+static Mode mode = MODE_STOPWATCH;
+static State state = STOPPED;
+
+void operate_stopwatch(void)
+{
+	switch (state)
+	{
+	case STOPPED:
+		if (is_released(BUTTON_2)) state = RUNNING;
+		return;
+	case RUNNING:
+		if (is_released(BUTTON_2)) state = PAUSED;
+		return;
+	case PAUSED:
+		if (is_released(BUTTON_2)) state = RUNNING;
+		if (is_released(BUTTON_3)) state = STOPPED;
+
+		return;
+	default:
+		return;
+	}
+}
+
+void operation_clock(void)
+{
+	switch (mode)
+	{
+	case CLOCK:
+		return;
+	case TIMER:
+		return;
+	case STOPWATCH:
+		operate_stopwatch();
+		return;
+	case ALARM:
+		return;
+	case MUSIC_PLAYER:
+		return;
+	default:
+		return;
+	}
+}
+
+
+

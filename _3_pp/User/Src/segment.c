@@ -1,0 +1,20 @@
+/*
+ * segment.c
+ *
+ *  Created on: Jan 3, 2026
+ *      Author: LeeJooHo
+ */
+
+
+#include <segment.h>
+
+void operate_segment(bool is_held)
+{
+	uint32_t current_time = get_current_time();
+	uint32_t seconds = (current_time / 1000) % 10;
+	uint32_t _100_ms = (current_time /  100) % 10;
+
+	_7SEG_SetNumber(DGT1, seconds, (is_held && _100_ms < 5) ? OFF : ON);
+	_7SEG_SetNumber(DGT2, _100_ms, OFF);
+}
+

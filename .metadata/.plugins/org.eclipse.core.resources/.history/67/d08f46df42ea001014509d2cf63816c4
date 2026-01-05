@@ -1,0 +1,42 @@
+/*
+ * timer.c
+ *
+ *  Created on: Jan 3, 2026
+ *      Author: LeeJooHo
+ */
+
+#ifndef SRC_TIMER_C_
+#define SRC_TIMER_C_
+
+#include <timer.h>
+
+static uint32_t current_time;
+static uint32_t lap_time[8];
+static uint8_t  total_lap_count;
+
+void increase_current_time(void)
+{
+	current_time++;
+}
+
+void set_current_time_zero(void)
+{
+	current_time = 0;
+}
+
+uint32_t get_current_time(void)
+{
+	return current_time;
+}
+
+void set_lap_time(void)
+{
+	lap_time[total_lap_count++] = time;
+}
+
+uint32_t get_lap_time(uint8_t index)
+{
+	return lap_time[index];
+}
+
+#endif /* SRC_TIMER_C_ */

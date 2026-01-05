@@ -1,0 +1,13 @@
+/*
+ * lcd.h
+ *
+ *  Created on: Jan 5, 2026
+ *      Author: LeeJooHo
+ */
+
+#ifndef INC_LCD_H_
+#define INC_LCD_H_
+
+#include <CLCD.h>
+
+#endif /* INC_LCD_H_ */

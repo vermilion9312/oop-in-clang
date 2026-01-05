@@ -1,0 +1,4 @@
+../User/Src/app_main.c:37:6:app_init	8	static
+../User/Src/app_main.c:43:6:app_loop	8	static
+../User/Src/app_main.c:77:6:operate_stopwatch	8	static
+../User/Src/app_main.c:96:6:HAL_TIM_PeriodElapsedCallback	16	static

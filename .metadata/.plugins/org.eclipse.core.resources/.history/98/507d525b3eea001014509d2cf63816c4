@@ -1,0 +1,14 @@
+/*
+ * lcd.c
+ *
+ *  Created on: Jan 5, 2026
+ *      Author: LeeJooHo
+ */
+
+
+#include <lcd.h>
+
+void operate_lcd(void)
+{
+	CLCD_Puts(0, 0, "Hello");
+}

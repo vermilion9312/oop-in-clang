@@ -1,0 +1,16 @@
+/*
+ * lcd.c
+ *
+ *  Created on: Jan 5, 2026
+ *      Author: LeeJooHo
+ */
+
+
+#include <lcd.h>
+
+void operate_lcd(void)
+{
+	char buffer[16];
+	sprintf(buffer, "STW %02d:%02d:%02d.%03d", get_time(TIME_HOUR), get_time(TIME_MIN), get_time(TIME_SEC), get_time(TIME_MS));
+	CLCD_Puts(0, 0, (unsigned char *) buffer);
+}

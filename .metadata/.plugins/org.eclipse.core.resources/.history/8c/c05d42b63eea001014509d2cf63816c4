@@ -1,0 +1,16 @@
+/*
+ * lcd.c
+ *
+ *  Created on: Jan 5, 2026
+ *      Author: LeeJooHo
+ */
+
+
+#include <lcd.h>
+
+void operate_lcd(void)
+{
+	char buffer[16];
+	sprintf(buffer, "%d Hello", 1);
+	CLCD_Puts(0, 0, (unsigned char *) "Hello");
+}

@@ -1,0 +1,22 @@
+/*
+ * lcd.c
+ *
+ *  Created on: Jan 5, 2026
+ *      Author: LeeJooHo
+ */
+
+
+#include <lcd.h>
+
+void operate_lcd(void)
+{
+	char buffer[16];
+	uint32_t current_time = get_current_time();
+	uint32_t miliseconds  = (current_time /    1)           % 1000;
+	uint32_t seconds      = (current_time / 1000)           %   60;
+	uint32_t minutes      = (current_time / 1000 / 60)      %   60;
+	uint32_t hours        = (current_time / 1000 / 60 / 60) %  100;
+
+	sprintf(buffer, "STW %02d:%02d:%02d.%03d", hours, minutes, seconds, miliseconds);
+	CLCD_Puts(0, 0, (unsigned char *) buffer);
+}

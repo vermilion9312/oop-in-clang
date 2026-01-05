@@ -1,0 +1,17 @@
+22:41:41 **** Incremental Build of configuration Debug for project _2_pp ****
+make -j4 all 
+arm-none-eabi-gcc "../User/Src/app_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Lib/Inc -I../User/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"User/Src/app_main.d" -MT"User/Src/app_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "User/Src/app_main.o"
+arm-none-eabi-gcc -o "_2_pp.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Github\oop-in-clang\_2_pp\STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="_2_pp.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: _2_pp.elf
+ 
+arm-none-eabi-size  _2_pp.elf 
+arm-none-eabi-objdump -h -S _2_pp.elf  > "_2_pp.list"
+   text	   data	    bss	    dec	    hex	filename
+  11636	     92	   1652	  13380	   3444	_2_pp.elf
+Finished building: default.size.stdout
+ 
+Finished building: _2_pp.list
+ 
+
+22:41:42 Build Finished. 0 errors, 0 warnings. (took 964ms)
+
