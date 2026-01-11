@@ -1,0 +1,20 @@
+/*
+ * button.c
+ *
+ *  Created on: Jan 11, 2026
+ *      Author: LeeJooHo
+ */
+
+
+#include <button.h>
+
+static Input button[MAX_BUTTON] = {
+		{ BUTTON_1_GPIO_Port, BUTTON_1_Pin },
+		{ BUTTON_2_GPIO_Port, BUTTON_2_Pin },
+		{ BUTTON_3_GPIO_Port, BUTTON_3_Pin }
+};
+
+Input* get_button(ButtonIndex index)
+{
+	return &button[index];
+}

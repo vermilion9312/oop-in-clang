@@ -1,0 +1,4 @@
+../App/Common/Src/input.c:11:6:update	1
+../App/Common/Src/input.c:17:6:is_held	1
+../App/Common/Src/input.c:22:6:is_pressed	3
+../App/Common/Src/input.c:27:6:is_released	3

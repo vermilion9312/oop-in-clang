@@ -1,0 +1,33 @@
+/*
+ * input.h
+ *
+ *  Created on: Sep 23, 2025
+ *      Author: vermi
+ */
+
+#ifndef INC_INPUT_H_
+#define INC_INPUT_H_
+
+#include "../../App/Inc/common_include.h"
+
+typedef enum {
+	BUTTON_1,
+	BUTTON_2,
+	BUTTON_3,
+	BUTTON_4,
+	MAX_BUTTON
+} InputIndex;
+
+typedef struct {
+	GPIO_TypeDef* port;
+	uint16_t      pin;
+	bool          last_state;
+	bool          state;
+} InputConfig;
+
+void update(InputIndex);
+bool is_held(InputIndex);
+bool is_pressed(InputIndex);
+bool is_released(InputIndex);
+
+#endif /* INC_INPUT_H_ */

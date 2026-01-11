@@ -1,0 +1,4 @@
+../App/Common/Src/input.c:11:6:update	16	static
+../App/Common/Src/input.c:17:6:is_held	16	static
+../App/Common/Src/input.c:22:6:is_pressed	16	static
+../App/Common/Src/input.c:27:6:is_released	16	static

@@ -1,0 +1,16 @@
+/*
+ * rgb.h
+ *
+ *  Created on: Jan 10, 2026
+ *      Author: LeeJooHo
+ */
+
+#ifndef INC_RGB_H_
+#define INC_RGB_H_
+
+#include <input.h>
+#include <output.h>
+
+void operate_rgb(Output*, InputEvent);
+
+#endif /* INC_RGB_H_ */

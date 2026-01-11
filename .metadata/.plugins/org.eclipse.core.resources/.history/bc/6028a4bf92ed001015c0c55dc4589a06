@@ -1,0 +1,30 @@
+/*
+ * input.c
+ *
+ *  Created on: Sep 23, 2025
+ *      Author: vermi
+ */
+
+
+#include <input.h>
+
+void update(Input* this)
+{
+	this->last_state = config->state;
+	this->state = HAL_GPIO_ReadPin(this->port, this->pin);
+}
+
+bool is_held(Input* this)
+{
+	return this->state;
+}
+
+bool is_pressed(Input* this)
+{
+	return !this->last_state && this->state;
+}
+
+bool is_released(Input* this)
+{
+	return this->last_state && !this->state;
+}

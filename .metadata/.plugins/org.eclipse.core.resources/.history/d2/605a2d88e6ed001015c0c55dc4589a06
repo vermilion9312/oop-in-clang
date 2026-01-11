@@ -1,0 +1,26 @@
+/*
+ * output.c
+ *
+ *  Created on: Sep 22, 2025
+ *      Author: vermi
+ */
+
+
+#include <output.h>
+
+void turn_on(Output* this)
+{
+	HAL_GPIO_WritePin(this->port, this->pin, GPIO_PIN_RESET);
+	this->state = true;
+}
+
+void turn_off(Output* this)
+{
+	HAL_GPIO_WritePin(this->port, this->pin, GPIO_PIN_SET);
+	this->state = false;
+}
+
+void toggle(Output* this)
+{
+	this->state ? turn_off(this) : turn_on(this);
+}

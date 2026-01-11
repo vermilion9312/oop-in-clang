@@ -1,0 +1,23 @@
+/*
+ * output.h
+ *
+ *  Created on: Sep 22, 2025
+ *      Author: vermi
+ */
+
+#ifndef INC_OUTPUT_H_
+#define INC_OUTPUT_H_
+
+#include <common_include.h>
+
+typedef struct {
+	GPIO_TypeDef* port;
+	uint16_t      pin;
+	bool          state;
+} Output;
+
+void turn_output_on(Output*);
+void turn_output_off(Output*);
+void toggle_output(Output*);
+
+#endif /* INC_OUTPUT_H_ */

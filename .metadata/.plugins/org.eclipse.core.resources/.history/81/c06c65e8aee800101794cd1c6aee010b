@@ -1,3 +1,0 @@
-../User/Src/app_main.c:17:6:app_init	1
-../User/Src/app_main.c:23:6:app_loop	8
-../User/Src/app_main.c:42:6:HAL_TIM_PeriodElapsedCallback	3

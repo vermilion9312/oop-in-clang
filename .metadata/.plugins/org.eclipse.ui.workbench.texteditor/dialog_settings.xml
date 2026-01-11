@@ -9,11 +9,11 @@
 		<item value="STATE_"/>
 	</list>
 	<list key="searchhistory">
+		<item value="LEFT"/>
 		<item value=", .last_state = false, .state = false"/>
 		<item value=".pin = "/>
 		<item value=".port = "/>
 		<item value=".state = false "/>
-		<item value="LEFT"/>
 		<item value="pressed"/>
 		<item value="stopwatch_state"/>
 		<item value="STOPWATCH_"/>

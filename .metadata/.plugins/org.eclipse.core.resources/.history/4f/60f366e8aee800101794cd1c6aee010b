@@ -1,3 +1,0 @@
-../User/Src/timer.c:15:6:increase_time	4	static
-../User/Src/timer.c:20:6:set_time_zero	4	static
-../User/Src/timer.c:25:10:get_time	16	static

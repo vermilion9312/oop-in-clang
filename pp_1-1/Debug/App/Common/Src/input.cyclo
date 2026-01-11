@@ -1,0 +1,5 @@
+../App/Common/Src/input.c:11:13:is_on	1
+../App/Common/Src/input.c:16:13:is_rising	3
+../App/Common/Src/input.c:21:13:is_falling	3
+../App/Common/Src/input.c:26:6:update_input	7
+../App/Common/Src/input.c:39:6:set_callback	1

@@ -1,0 +1,3 @@
+../App/Common/Src/output.c:11:6:turn_output_on	24	static
+../App/Common/Src/output.c:18:6:turn_output_off	24	static
+../App/Common/Src/output.c:25:6:toggle_output	16	static

@@ -1,0 +1,44 @@
+/*
+ * input.c
+ *
+ *  Created on: Sep 23, 2025
+ *      Author: vermi
+ */
+
+
+#include "../../App/Inc/input.h"
+
+static InputConfig input_config[MAX_BUTTON] = {
+		{ BUTTON_1_GPIO_Port, BUTTON_1_Pin },
+		{ BUTTON_2_GPIO_Port, BUTTON_2_Pin },
+		{ BUTTON_3_GPIO_Port, BUTTON_3_Pin },
+		{ BUTTON_4_GPIO_Port, BUTTON_4_Pin }
+};
+
+void update(InputIndex index)
+{
+	InputConfig* config = &input_config[index];
+	config->last_state = config->state;
+	config->state = HAL_GPIO_ReadPin(config->port, config->pin);
+}
+
+bool is_held(InputIndex index)
+{
+	InputConfig* config = &input_config[index];
+
+	return config->state;
+}
+
+bool is_pressed(InputIndex index)
+{
+	InputConfig* config = &input_config[index];
+
+	return !config->last_state && config->state;
+}
+
+bool is_released(InputIndex index)
+{
+	InputConfig* config = &input_config[index];
+
+	return config->last_state && !config->state;
+}

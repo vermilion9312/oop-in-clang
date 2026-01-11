@@ -1,0 +1,11 @@
+/*
+ * rgb.c
+ *
+ *  Created on: Jan 10, 2026
+ *      Author: LeeJooHo
+ */
+
+
+#include <rgb.h>
+
+void

@@ -1,4 +1,0 @@
-../User/Src/output.c:11:13:turn_on	1
-../User/Src/output.c:19:13:turn_off	1
-../User/Src/output.c:27:13:toggle	2
-../User/Src/output.c:34:9:new_Output	1
